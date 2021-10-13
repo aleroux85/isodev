@@ -1,2 +1,2 @@
-# multidev
-Run multiple development environments in containers to keep your OS clean with development environments that are isolated and reproducible.
+# IsoDev
+Run multiple development environments in Docker containers. This allows you to keep your OS as clean as possible since development setups are not done directly on the OS but in containers. For example, you can create a ML development environment with all the tools it needs and a separate PHP environment for a project you are maintaining. Such environments can be isolated from the OS and each other for improved predictability of complex development requirements. The ability to create and store your own environments makes your setups highly reproducible.
