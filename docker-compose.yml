@@ -1,0 +1,26 @@
+version: "3.7"
+services:
+  base:
+    image: isodev:base
+    build:
+      context: ./base
+      dockerfile: ubuntu20.04.Dockerfile
+
+  main:
+    image: isodev:main
+    build: .
+    depends_on:
+      - base
+    hostname: main
+    ports:
+      - "8022:22"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  # custom:
+  #   build:
+  #     context: ./custom
+  #   ports:
+  #     - "8122:22"
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock

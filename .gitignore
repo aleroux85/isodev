@@ -1,0 +1,5 @@
+/custom/*
+!/custom/Dockerfile
+
+id_rsa.pub
+docker-compose.override.yml
