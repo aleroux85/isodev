@@ -1,0 +1,49 @@
+version: "3.7"
+services:
+  main:
+    build:
+      args:
+        - USER=<user>
+        - GROUP=<group>
+        # - UID=1000
+        # - GID=1000
+        # - DOCKER_GID=999
+        - FULL_NAME="<fullname>"
+        - EMAIL="email"
+    restart: unless-stopped
+    volumes:
+      - /home/<user>/Projects:/home/<user>/Projects
+
+  # custom:
+  #   image: isodev:custom
+  #   build:
+  #     context: ./custom
+  #   depends_on:
+  #     - main
+  #   hostname: custom
+  #   restart: unless-stopped
+  #   ports:
+  #     - "8122:22"
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  
+  # myterm:
+  #   image: isodev:myterm
+  #   build:
+  #     context: ./custom/myterm
+  #     args:
+  #       - USER=<user>
+  #       - GO_VERSION=1.17.2
+  #   depends_on:
+  #     - main
+  #   hostname: myterm
+  #   restart: unless-stopped
+  #   ports:
+  #     - "8122:22"
+  #   volumes:
+  #     - ./custom/myterm/.vimrc:/home/<user>/.vimrc
+  #     # - /home/<user>/.vimrc:/home/<user>/.vimrc
+  #     # - /home/<user>/.vim:/home/<user>/.vim
+  #     - /home/<user>/.tmux.conf:/home/<user>/.tmux.conf
+  #     - /home/<user>/Projects:/home/<user>/Projects
+  #     - /var/run/docker.sock:/var/run/docker.sock

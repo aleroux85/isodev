@@ -15,7 +15,8 @@ Run multiple development environments in Docker containers. This allows you to k
 cp ~/.ssh/id_rsa.pub id_rsa.pub
 ```
 
-2) Create a `docker-compose.override.yml` file with:
+2) Copy `docker-compose.override.example.yml` and/or create a
+`docker-compose.override.yml` file with:
 
 ```none
 version: "3.7"
@@ -27,16 +28,21 @@ services:
         - GROUP=<group>
         # - UID=1000
         # - GID=1000
+        # - DOCKER_GID=999
         - FULL_NAME="<fullname>"
         - EMAIL="<email>"
     # volumes:
       # - /home/<user>/Projects:/home/<user>/Projects
 ```
 
-and fill in user details and the volumes to mount. Run `id` on your local host
-to get your username, groupname, UID and GID. If the UID and GID is not both
+Fill in user details and the volumes to mount. Run `id` on your local host
+to get your username, groupname, UID and GID. If the UID and GID is not
 1000, set that also in the args above.
 
+Note that the default docker GID is 999. If yours is different (the docker
+group your user is part of) uncomment the DOCKER_GID line to specify it.
+
+Your fullname and email is required to setup the git config in the container.
 Also, add volume mounts of the project folders you want to access inside the
 container.
 
