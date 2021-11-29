@@ -5,11 +5,13 @@ ARG USER
 ARG GROUP
 ARG UID=1000
 ARG GID=1000
+ARG DOCKER_GID=999
 ARG FULL_NAME
 ARG EMAIL
 
 RUN groupadd -r -g ${GID} ${GROUP} && useradd -r -m -u ${UID} -g ${GROUP} -d /home/${USER} -s /bin/bash ${USER}
 RUN usermod -aG docker ${USER}
+RUN sed -i "/docker:/s/999/${DOCKER_GID}/" /etc/group
 
 RUN mkdir -p /run/sshd
 RUN sed -i '/PubkeyAuthentication/s/^#//' /etc/ssh/sshd_config
